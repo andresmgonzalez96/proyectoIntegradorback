@@ -1,4 +1,4 @@
-package co.udea.integrador.model;
+	package co.udea.integrador.model;
 
 import java.util.Date;
 

@@ -45,6 +45,34 @@ public class ProyectoServiceImpl implements ProyectoService {
 		log.debug("Fin getProyecto: proyecto = {}", proyecto.get());
 		return proyecto.get();
 	}
+	
+	@Override
+	public void deleteProyecto(Proyecto proyecto) {
+		proyectoRepository.delete(proyecto);		
+	}
+	
+	@Override
+	public Proyecto updateProyecto(Proyecto proyecto) {
+		return proyectoRepository.save(proyecto);
+	}
+	
+	@Override
+	public Proyecto addProyecto(Proyecto proyecto) {
+//		List<Proyecto> proyectos= proyectoRepository.findAll();
+//		proyecto.setId(proyectos.size());
+		return proyectoRepository.save(proyecto);
+	}
+	
+	@Override
+	public void deleteProyectoId(int id) {
+		log.debug("Inicio getProyecto: id = {}", id);
+		Optional<Proyecto> proyecto = proyectoRepository.findById(id);
+		if(!proyecto.isPresent()){
+			throw new DataNotFoundException(messages.get("exception.data_not_found.demo"));
+		}
+		log.debug("Fin getProyecto: proyecto = {}", proyecto.get());
+		proyectoRepository.delete(proyecto.get());		
+	}
 
 
 }
